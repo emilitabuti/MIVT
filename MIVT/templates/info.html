@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>MIVT: About Us</title>
+    </head>
+
+    <body>
+        <!-- Cabeçalho e Navegação -->
+        <header class="custom-header py-3">
+            <div class="container">
+                <h1 class="display-4">MIVT</h1>
+            </div>
+        </header>
+
+        <nav class="navbar navbar-expand-md">
+            <!-- Botão que aparece em dispositivos menores -->
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>  <!-- Ícone de hambúrguer (3 linhas) -->
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/">Mivt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/carrinho">Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/pedidos">My Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/info">About Us</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Link de Logout -->
+        <div class="logout-link">
+            <a href="/logout">Log Out</a>
+        </div>
+
+
+        <div class="container mt-5">
+            <h2>Who Are We?</h2>
+            <p>Welcome to MIVT, your favorite accessories store! Founded with a passion for enhancing the unique beauty of each individual, our mission is to offer high-quality products that enhance the personality of those who wear them.</p>
+            <p>The brand was born from the dream of a group of friends who, driven by their love for fashion and creativity, decided to create a brand that celebrates individuality. Since the beginning, we have constantly sought out the latest trends in the market, always committed to bringing exclusive new products to our catalog.</p>
+            <p>At MIVT, we believe that every accessory tells a story. We invite you to be part of our journey and find the perfect item that will complement your personal style. Thank you for choosing MIVT – we are happy to have you with us!</p>
+
+            <h2>Contact Information</h2>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Email:</strong> contato@MIVT.com</li>
+                <li class="list-group-item"><strong>Phone:</strong> (11) 1234-5678</li>
+                <li class="list-group-item"><strong>Address:</strong> Rua das Estradas, 123, São Paulo, SP</li>
+                <li class="list-group-item"><strong>Opening Hours:</strong> Mon - Sat: 8am - 6pm</li>
+            </ul>
+        </div>
+    </body>
+
+    <script>
+        // Aguarde 3 segundos antes de ocultar as mensagens de flash
+        setTimeout(() => {
+            const flashMessage = document.getElementById('flash-message');
+            if (flashMessage) {
+                // Adiciona uma classe para transição suave (opcional)
+                flashMessage.style.transition = "opacity 0.5s";
+                flashMessage.style.opacity = 0;
+
+                // Remove o elemento do DOM após a transição
+                setTimeout(() => flashMessage.remove(), 500);
+            }
+        }, 3000); // 3000 ms = 3 segundos
+    </script>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div id="flash-message" class="alert alert-danger" role="alert">
+                {% for category, message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</html>

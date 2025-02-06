@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Carregar o jQuery completo (necessário para Bootstrap 4 e AJAX) -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+
+        <!-- Carregar o Bootstrap 5 CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Carregar o Popper.js necessário para o Bootstrap 5 -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+
+        <!-- Carregar o Bootstrap 5 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+        <!-- Seu arquivo CSS personalizado -->
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>MIVT</title>
+    </head>
+
+    <body>
+        <!-- Cabeçalho e Navegação -->
+        <header class="custom-header py-3">
+            <div class="container">
+                <h1 class="display-4">MIVT</h1>
+            </div>
+        </header>
+
+        <nav class="navbar navbar-expand-md">
+            <!-- Botão que aparece em dispositivos menores -->
+            <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>  <!-- Ícone de hambúrguer (3 linhas) -->
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/">Mivt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/carrinho">Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/pedidos">My Orders</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/info">About Us</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Link de Logout -->
+        <div class="logout-link">
+            <a href="/logout">Log Out</a>
+        </div>
+
+        <form method="post" action="/" class="d-flex mb-4">
+            <input type="text" name="busca" placeholder="Search for products..." class="form-control me-2">
+            <button type="submit" class="btn btn-outline-secondary">Search</button>
+        </form>
+
+        <!-- Produtos -->
+        <section class="produtos">
+            <div class="produtos-container">
+                {% for i in produtos %}
+                <div class="produto">
+                    <img src="{{ url_for('static', filename='uploads/' + i['imagem']) }}" alt="{{ i['nome'] }}">
+                    <h3>{{ i['nome'] }}</h3>
+                    <p>R$ {{ "{:.2f}".format(i['preco'])}}</p>
+
+                    <form action="/" method="post" onsubmit="showAddedMessage(event)">
+                        <input type="hidden" name="produto_id" value="{{ i['id'] }}">
+                        <label for="quantidade{{ i['id'] }}" class="form-label">Quantity:</label>
+                        <input type="number" id="quantidade{{ i['id'] }}" name="quantidade" min="1" value="1" class="form-control mb-2">
+                        <button class="btn-carrinho" type="submit">Add to Cart</button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </body>
+
+    <script>
+        // Aguarde 3 segundos antes de ocultar as mensagens de flash
+        setTimeout(() => {
+            const flashMessage = document.getElementById('flash-message');
+            if (flashMessage) {
+                // Adiciona uma classe para transição suave (opcional)
+                flashMessage.style.transition = "opacity 0.5s";
+                flashMessage.style.opacity = 0;
+
+                // Remove o elemento do DOM após a transição
+                setTimeout(() => flashMessage.remove(), 500);
+            }
+        }, 3000); // 3000 ms = 3 segundos
+    </script>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div id="flash-message" class="alert alert-danger" role="alert">
+                {% for category, message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+</html>

@@ -1,0 +1,271 @@
+/* Seletores base */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5dc;
+    margin-bottom: 50px;
+    user-select: none; /* Impede a seleção de texto na página */
+}
+
+.navbar .nav-link {
+    color: #4b3d31;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    text-decoration: none;
+    color: #3a2e26;
+}
+
+.logout-link a {
+    color: #f5f5dc;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    position: absolute;
+    top: 30px;    /* Distância do topo */
+    right: 20px;  /* Distância da borda direita */
+    z-index: 1000; /* Garante que o link fique acima de outros elementos */
+    cursor: pointer; /* Mostra o ponteiro ao passar o mouse */
+}
+
+.logout-link a:hover {
+    text-decoration: none;
+    color: #ffff;
+}
+
+.btn-open, .btn-carrinho, .btn-comprar, .btn-finalizar {
+    background-color: #4b3d31;
+    color: #f5f5dc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 1em;
+    transition: all 0.2s ease;
+    margin-top: 15px;
+}
+
+button:focus, .btn-carrinho:focus, .btn-comprar:focus, .btn-finalizar:focus, form.d-flex button:focus {
+    outline: none; /* Remove o contorno de foco */
+    box-shadow: none; /* Remove qualquer sombra do foco */
+}
+
+.btn-carrinho:hover, .btn-comprar:hover, .btn-finalizar:hover, form.d-flex button:hover {
+    background-color: #3a2e26;
+    transform: scale(1.05);
+}
+
+/* Elementos comuns */
+.navbar {
+    background-color: #d2b48c;
+    padding: 5px 10px;
+}
+
+.container h2, .form-container h1 {
+    color: #4b3d31;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    margin-top:40px;
+}
+
+.table th, .custom-header {
+    background-color: #4b3d31;
+    color: #f5f5dc;
+    left: 1em;
+}
+
+.table, .produto {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.produto {
+    padding: 15px;
+    text-align: center;
+    max-width: 250px;
+    flex: 1 1 calc(25% - 20px);
+    box-sizing: border-box;
+}
+
+.produto img {
+    height: auto; /* Mantém a proporção da imagem */
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.produto h3 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.produtos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Formulários */
+input {
+    width: 100%;
+    padding: 1em;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Título da loja "MIVT" */
+.form-container h1 {
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    color: #4b3d31;
+    margin-bottom:20px;
+}
+
+/* Estilo do corpo da página de login */
+body.open-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f5f5dc; /* Mantém a cor de fundo */
+}
+
+/* Estilo do contêiner de login */
+.form-container {
+    width: 300px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Estilo do link para o registro */
+a {
+    display: block;
+    margin-top: 15px;
+    color: #C7A16C;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Flash messages */
+#flash-message, .alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f5f5dc;
+    color: #4b3d31;
+    border: 1px solid #4b3d31;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    font-size: 14px;
+    width: fit-content;
+}
+
+/* Botões de ícones */
+.btn-icon {
+    border: none; /* Remove a borda */
+    background: none; /* Remove o fundo */
+    padding: 0; /* Remove o espaçamento interno */
+    cursor: pointer; /* Adiciona o cursor de ponteiro ao passar */
+}
+
+.btn-icon .fas {
+    color: red; /* Define a cor vermelha para o ícone */
+    font-size: 14px; /* Ajusta o tamanho do ícone */
+}
+
+.custom-toggler {
+    background-color: #d2b48c; /* Fundo do botão */
+    border-color: #d2b48c;    /* Bordas na mesma cor */
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' fill='%234b3d31' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.5 12a.5.5 0 010-1h13a.5.5 0 010 1h-13zm0-4a.5.5 0 010-1h13a.5.5 0 010 1h-13zm0-4a.5.5 0 010-1h13a.5.5 0 010 1h-13z'/%3E%3C/svg%3E");
+}
+
+form.d-flex {
+    margin-bottom: 15px;
+    margin-left: 20px; /* Afasta o formulário da borda esquerda */
+}
+
+form.d-flex input {
+    border: 1px solid #ffff;
+    border-radius: 10px;
+    padding: 5px; /* Reduz o padding para diminuir a altura */
+    width: 1100px; /* Define a largura da barra de pesquisa */
+}
+
+form.d-flex input:focus {
+    outline: none; /* Remove o contorno padrão */
+    border-color: #4b3d31; /* Define uma borda personalizada */
+    box-shadow: none; /* Remove qualquer sombra aplicada */
+}
+
+form.d-flex button {
+    background-color: #4b3d31;
+    color: #f5f5dc;
+    border-radius: 10px;
+    padding: 1px 8px; /* Reduz o padding para diminuir a altura */
+    cursor: pointer;
+    font-size: 12px; /* Ajusta o tamanho da fonte */
+    height: 24px; /* Define uma altura fixa menor */
+    line-height: 22px; /* Ajusta o alinhamento vertical do texto */
+    margin-top: 15px
+}
+
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px; /* Reduz o espaçamento em telas pequenas */
+        font-size: 14px; /* Diminui o tamanho do texto */
+    }
+
+    .produtos-container {
+        flex-wrap: wrap; /* Garante que os produtos fiquem em várias linhas */
+        gap: 10px; /* Diminui o espaçamento entre os itens */
+    }
+
+    .produto {
+        max-width: 100%; /* Faz com que os produtos ocupem a largura total em telas pequenas */
+    }
+
+    .form-container {
+        width: 90%; /* Ajusta a largura do formulário para caber na tela */
+    }
+
+    .table td, .table th {
+        font-size: 14px; /* Ajusta o tamanho da fonte para telas pequenas */
+        white-space: nowrap; /* Evita quebra de texto */
+    }
+    .table-responsive {
+        margin-bottom: 15px; /* Adiciona espaço entre tabelas e outros elementos */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .produto {
+        max-width: 45%; /* Exibe dois produtos por linha */
+    }
+}
+
+@media (min-width: 1025px) {
+    .produto {
+        max-width: 250px; /* Mantém o tamanho ideal para desktops */
+    }
+}

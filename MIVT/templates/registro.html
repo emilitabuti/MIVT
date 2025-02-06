@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="open-page">
+    <div class="form-container">
+        <h1>MIVT</h1>
+        <form method="POST">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="btn-open">Register</button>
+        </form>
+        <p class="form-footer">
+            <a href="/login">Already have an account? Log in</a>
+        </p>
+    </div>
+</body>
+<script>
+    // Aguarde 3 segundos antes de ocultar as mensagens de flash
+    setTimeout(() => {
+        const flashMessage = document.getElementById('flash-message');
+        if (flashMessage) {
+            // Adiciona uma classe para transição suave (opcional)
+            flashMessage.style.transition = "opacity 0.5s";
+            flashMessage.style.opacity = 0;
+
+            // Remove o elemento do DOM após a transição
+            setTimeout(() => flashMessage.remove(), 500);
+        }
+    }, 3000); // 3000 ms = 3 segundos
+</script>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div id="flash-message" class="alert alert-danger" role="alert">
+            {% for category, message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+</html>
